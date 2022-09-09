@@ -7,6 +7,7 @@ defmodule ElixirProject.MixProject do
       version: "0.1.0",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
       deps: deps()
     ]
   end
@@ -27,6 +28,13 @@ defmodule ElixirProject.MixProject do
       {:postgrex, "~> 0.15.13"}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+    ]
+  end
+  
+  defp aliases do
+    [
+      "ecto.setup": ["ecto.create", "ecto.migrate", "run -e 'ElixirProjectMock.Seeds.seed!()'"],
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
     ]
   end
 end
